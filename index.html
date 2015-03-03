@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+
+</style>
+<body>
+<div id="drawing" width="500" height="500">
+</div>
+<div id="text">
+</div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.hexbin.v0.min.js?5c6e4f0"></script>
+
+<script>
+
+function hex_corner(x,y,size,i){
+	PI = Math.PI;
+	var angle = 2*PI / 6*(i+0.5);
+	var point = ((x + size * Math.cos(angle))+","+ (y+ size*Math.sin(angle)));
+	//console.log(point);
+	return point;
+	
+}
+
+function combination(n,k){
+	if (k > n) {
+        return 0;
+    }
+    r = 1;
+    for (d = 1; d <= k; ++d) {
+        r *= n--;
+        r /= d;
+    }
+	console.log(n + "," + k + "," + r);
+    return r;
+}
+
+		linearmap = d3.scale.pow().exponent(0.35)
+		                .domain([0,50])
+		                .range(['#47B8C8','#423A38'])
+
+		
+		size = 30;
+	    var svg = d3.select("#drawing").append("svg")
+	    .attr("width",800).attr("height",500);
+		
+		
+		var points = "";
+		height = size*2;
+		vert = height * 3/4;
+		width = Math.sqrt(3)/2 * height;
+		
+		console.log(points);
+		
+		x1 = 300;
+		y1 = 50;
+				
+		for(a = 0;a<10;a++){
+			val = 1;
+			for(b=0;b<=a;b++){
+				points = ""
+				x = x1+width*b;
+				y = y1;
+				for(i=0;i<6;i++){
+					points += hex_corner(x,y,size,i) + " ";
+				}
+				c = combination(a,b);
+				hex = svg.append("polygon").transition().duration(500)
+				.attr("points",points)
+				.attr("fill",function(d){
+					temp = linearmap(c);
+					//console.log(c+"-->"+temp);
+					return temp;
+				});
+				//hex.enter().append("svg:title").text("manu");
+		
+				svg.append("text").attr("x",x).attr("y",y).text(c).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c)
+				.on("mouseover",function(d){
+					
+					d3.select(this)
+					.text(this.getAttribute('n')+'C'+this.getAttribute('r'));
+				})
+				.on("mouseout",function(d){
+					d3.select(this)
+					.text(this.getAttribute('c'));
+				});
+			}
+			x1 -= width *0.5;
+			y1 += height*0.75;
+		}
+</script>
+
+
+</body>
