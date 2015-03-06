@@ -7,8 +7,21 @@
 
 <body onLoad='draw();'>
 <div>
-The following visualization 
+The binomial theorem describes the algebraic expansion of powers of a binomial, hence it is referred to as binomial expansion. According to the theorem, it is possible to expand the power (x + y)n into a sum involving terms of the form axbyc, where the exponents b and c are nonnegative integers with b + c = n, and the coefficient a of each term is a specific positive integer depending on n and b. When an exponent is zero, the corresponding power is usually omitted from the term. 
+
+<br/><br/><br/>
+For example,
+
+    (x+y)^4 = x^4 + 4*x^3*y + 6*x^2*y^2 + 4 x * y^3 + y^4.
+    
+<br/><br/>
+
+The coefficient a in the term of a*x^b*y^c is known as the binomial coefficient. These coefficients for varying n and b can be arranged to form Pascal's triangle which we have shown below for binomial expansions for (1+x).
+
+These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. 
+
 </div>
+
 
 <div id="drawing" width="500" height="500" >
 </div>
@@ -16,19 +29,18 @@ The following visualization
 <br/><br/>
 
 <div >
-Select a value to adjust the triangle &nbsp;&nbsp;&nbsp;
-<input list="triangle_level" value="9" onmouseup="pascal();">
-<datalist id="triangle_level">
-  <option value="1">
-  <option value="2">
-  <option value="3">
-  <option value="4">
-  <option value="5">
-  <option value="6">
-  <option value="7">
-  <option value="8">
-  <option value="9">
-</datalist> 
+Select a value to adjust the triangle :&nbsp;&nbsp;&nbsp;
+
+<input type="radio" name="triangle_level" value="1" onclick="pascal()"> 1 &nbsp;
+<input type="radio" name="triangle_level" value="2" onclick="pascal()"> 2 &nbsp;
+<input type="radio" name="triangle_level" value="3" onclick="pascal()"> 3 &nbsp;
+<input type="radio" name="triangle_level" value="4" onclick="pascal()"> 4 &nbsp;
+<input type="radio" name="triangle_level" value="5" onclick="pascal()"> 5 &nbsp;
+<input type="radio" name="triangle_level" value="6" onclick="pascal()"> 6 &nbsp;
+<input type="radio" name="triangle_level" value="7" onclick="pascal()"> 7 &nbsp;
+<input type="radio" name="triangle_level" value="8" onclick="pascal()"> 8 &nbsp;
+<input type="radio" name="triangle_level" value="9" onclick="pascal()" checked> 9 &nbsp;
+
 <br/>
 <button type="button" onclick='equation();' id="toggle_eqn_button">Show equation</button>
 <button type="button" onClick='pow_2();' id="pow2">Show Powers of 2</button>
@@ -51,9 +63,18 @@ Select a value to adjust the triangle &nbsp;&nbsp;&nbsp;
 				.append("text").attr("x",10).attr("y",10)
 							.attr("fill","black");
 
-
+var trngl = 9;
 function pascal(){
-	console.log(document.getElementById('triangle_level'));
+	var radios = document.getElementsByName('triangle_level');
+	for(i=0;i<radios.length;i++){
+		if (radios[i].checked){
+			console.log(radios[i].value);
+			trngl = radios[i].value;
+			reset();
+			draw();
+			break;
+		}
+	};
 }
 							
 var toggle_eqn_button = false;
@@ -105,11 +126,52 @@ function combination(n,k){
     return r;
 }
 
+
+function reset(){	
+		size = 30;
+		var points = "";
+		height = size*2;
+		vert = height * 3/4;
+		width = Math.sqrt(3)/2 * height;	
+		x1 = 300;
+		y1 = 50;
+		for(a = 0;a<=9;a++){
+			val = 1;
+			for(b=0;b<=a;b++){
+				points = ""
+				x = x1+width*b;
+				y = y1;
+				for(i=0;i<6;i++){
+					points += hex_corner(x,y,size,i) + " ";
+				}
+				c = combination(a,b);
+				hex = svg.append("polygon")
+				.attr("points",points)
+				.attr("fill","white")
+				.attr("stroke","white");
+				svg.append("text").attr("x",x).attr("y",y).text(c).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c);
+				
+			}
+			svg.append("text").attr("x",600+width*2).attr("y",y).text("2^"+a+"="+Math.pow(2,a)).attr("fill","white").attr("stroke","white");
+			svg.append("text").attr("x",600).attr("y",y).text("(x+1)^"+a).attr("fill","white").attr("stroke","white");
+			x1 -= width *0.5;
+			y1 += height*0.75;
+		}
+		x1 += width *0.5;
+		for(i=0;i<=9;i++){
+			svg.append("text").attr("x",x1).attr("y",y1).attr('text-anchor',"middle").text("x^"+i).attr("fill","white").attr("stroke","white");
+			x1 = x1+width*0.5;
+			if(i!=9)
+				svg.append("text").attr("x",x1).attr("y",y1).attr('text-anchor',"middle").text("+").attr("fill","white").attr("stroke","white");
+			x1 = x1+width*0.5;
+		}
+}
+
 function draw(){
 		linearmap = d3.scale.pow().exponent(0.35)
-		                .domain([0,50])
-		                .range(['#47B8C8','#423A38'])
-
+		                .domain([0,200])
+		                //.range(['#47B8C8','#423A38'])
+						.range(['white','black'])
 		
 		size = 30;
 		
@@ -123,7 +185,7 @@ function draw(){
 		x1 = 300;
 		y1 = 50;
 				
-		for(a = 0;a<10;a++){
+		for(a = 0;a<=trngl;a++){
 			val = 1;
 			for(b=0;b<=a;b++){
 				points = ""
@@ -170,10 +232,10 @@ function draw(){
 			y1 += height*0.75;
 		}
 		x1 += width *0.5;
-		for(i=0;i<10;i++){
+		for(i=0;i<=trngl;i++){
 			svg.append("text").attr("x",x1).attr("y",y1).attr('text-anchor',"middle").text("x^"+i);
 			x1 = x1+width*0.5;
-			if(i!=9)
+			if(i!=trngl)
 			svg.append("text").attr("x",x1).attr("y",y1).attr('text-anchor',"middle").text("+");
 			x1 = x1+width*0.5;
 		}
