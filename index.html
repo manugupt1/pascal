@@ -16,11 +16,13 @@ For example,
     
 <br/><br/>
 
-The coefficient a in the term of a*x^b*y^c is known as the binomial coefficient. These coefficients for varying n and b can be arranged to form Pascal's triangle which we have shown below for binomial expansions for (1+x).
-
-These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. 
+The coefficient a in the term of a*x^b*y^c is known as the binomial coefficient. These coefficients for varying n and b can be arranged to form Pascal's triangle which we have shown below for binomial expansions for (1+x).<br/>
+These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. For example,
 
 </div>
+<div style="display:inline-block;" id="question"></div>
+<div style="display:inline-block;" id="formula"></div>
+<div style="display:inline-block;" id="solution"></div>
 
 
 <div id="drawing" width="500" height="500" >
@@ -47,9 +49,6 @@ Select a value to adjust the triangle :&nbsp;&nbsp;&nbsp;
 </div>
 
 
-<div style="display:inline-block;" id="question"></div>
-<div style="display:inline-block;" id="formula"></div>
-<div style="display:inline-block;" id="solution"></div>
 
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -62,15 +61,18 @@ Select a value to adjust the triangle :&nbsp;&nbsp;&nbsp;
 	    var svg1 = d3.select("#question").append("svg")
 		.attr("width",1020).attr("height",50)
 		.append("text").attr("x",10).attr("y",40)
-		.attr("fill","black");
+		.attr("fill","black")
+		.text("In how many ways can I give 1 tin cans to 4 people?");
 	    var svg2 = d3.select("#formula").append("svg")
 		.attr("width",1020).attr("height",50)
 		.append("text").attr("x",10).attr("y",40)
-		.attr("fill","black");
+		.attr("fill","black")
+		.text("I can easily do this using combinations, 4C1");
 	    var svg3 = d3.select("#solution").append("svg")
 		.attr("width",1020).attr("height",50)
 		.append("text").attr("x",10).attr("y",40)
-		.attr("fill","black");
+		.attr("fill","black")
+		.text("=> n! / (r! * (n-r)!) =4");
 
 var trngl = 9;
 function pascal(){
