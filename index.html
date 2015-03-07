@@ -158,7 +158,7 @@ function reset(){
 				.attr("points",points)
 				.attr("fill","white")
 				.attr("stroke","white");
-				svg.append("text").attr("x",x).attr("y",y).text(c).attr("fill","s").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c);
+ 				//svg.append("text").attr("x",x).attr("y",y).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c).attr("stroke","white").text(c);
 				
 			}
 			svg.append("text").attr("x",600+width*2).attr("y",y).text("2^"+a+"="+Math.pow(2,a)).attr("fill","white").attr("stroke","white");
@@ -180,7 +180,7 @@ function draw(){
 		linearmap = d3.scale.pow().exponent(0.35)
 		                .domain([0,200])
 		                //.range(['#47B8C8','#423A38'])
-						.range(['white','black'])
+						.range(['grey','black'])
 		
 		size = 30;
 		
@@ -213,7 +213,7 @@ function draw(){
 				});
 				//hex.enter().append("svg:title").text("manu");
 		
-				svg.append("text").attr("x",x).attr("y",y).text(c).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c)
+				svg.append("text").attr("x",x).attr("y",y).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c).text(c)
 				.on("mouseover",function(d){
 					
 					d3.select(this)
