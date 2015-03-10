@@ -7,7 +7,7 @@
 
 <body onLoad='draw();'>
 <div>
-The binomial theorem describes the algebraic expansion of powers of a binomial, hence it is referred to as binomial expansion. According to the theorem, it is possible to expand the power (x + y)n into a sum involving terms of the form axbyc, where the exponents b and c are nonnegative integers with b + c = n, and the coefficient a of each term is a specific positive integer depending on n and b. When an exponent is zero, the corresponding power is usually omitted from the term. 
+The binomial theorem describes the algebraic expansion of powers of a binomial, hence it is referred to as binomial expansion. According to the theorem, it is possible to expand the power (x + y)^p into a sum involving terms of the form a^x*b^y*c, where the exponents b and c are nonnegative integers with b + c = n, and the coefficient a of each term is a specific positive integer depending on n and b. When an exponent is zero, the corresponding power is usually omitted from the term. 
 
 <br/><br/><br/>
 For example,
@@ -15,9 +15,11 @@ For example,
     (x+y)^4 = x^4 + 4*x^3*y + 6*x^2*y^2 + 4 x * y^3 + y^4.
     
 <br/><br/>
-
 The coefficient a in the term of a*x^b*y^c is known as the binomial coefficient. These coefficients for varying n and b can be arranged to form Pascal's triangle which we have shown below for binomial expansions for (1+x).<br/>
-These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. For example,
+These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. 
+
+<br/>
+Visualization Usage : Every cell represents a binomial coefficients and the text on the right reflect the equation and the sum of coefficients. At the bottom, you can find the powers of the equation corresponding to the coefficients of the equation at the base of the triangle. Feel free to play with it. The example in the text changes when you hover over the text in the hexagon cells. It is highly recommended to read through the examples, once it has changed, so that you can consider combinations better.
 
 </div>
 <div style="display:inline-block;" id="question"></div>
@@ -31,7 +33,7 @@ These numbers also arise in combinatorics, where (nCr) gives the number of diffe
 <br/><br/>
 
 <div >
-Select a value to adjust the triangle :&nbsp;&nbsp;&nbsp;
+Select a value to adjust the power of the equation (1+x)^p :&nbsp;&nbsp;&nbsp;
 
 <input type="radio" name="triangle_level" value="1" onclick="pascal()"> 1 &nbsp;
 <input type="radio" name="triangle_level" value="2" onclick="pascal()"> 2 &nbsp;
@@ -45,7 +47,7 @@ Select a value to adjust the triangle :&nbsp;&nbsp;&nbsp;
 
 <br/>
 <button type="button" onclick='equation();' id="toggle_eqn_button">Show equation</button>
-<button type="button" onClick='pow_2();' id="pow2">Show Powers of 2</button>
+<button type="button" onClick='pow_2();' id="pow2">Show Sum of Coefficients</button>
 </div>
 
 
@@ -105,11 +107,11 @@ var pow2 = false;
 function pow_2(){
 	if(pow2){
 		pow2=false;
-		document.getElementById('pow2').innerHTML="Show Powers of 2"
+		document.getElementById('pow2').innerHTML="Show Sum of Coefficients"
 	}
 	else{
 		pow2 = true;
-		document.getElementById('pow2').innerHTML="Hide Powers of 2"
+		document.getElementById('pow2').innerHTML="Hide Sum of Coefficients"
 	}
 	draw();
 
