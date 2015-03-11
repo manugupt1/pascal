@@ -59,7 +59,7 @@ Select a value to adjust the power of the equation (1+x)^p :&nbsp;&nbsp;&nbsp;
 <script>
 
 	    var svg = d3.select("#drawing").append("svg")
-	    .attr("width",1020).attr("height",500);
+	    .attr("width",1020).attr("height",520);
 	    var svg1 = d3.select("#question").append("svg")
 		.attr("width",1020).attr("height",50)
 		.append("text").attr("x",10).attr("y",40)
@@ -168,7 +168,7 @@ function reset(){
 			svg.append("text").attr("x",600+width*2).attr("y",y).text("2^"+a+"="+Math.pow(2,a)).attr("fill","white").attr("stroke","white");
 			svg.append("text").attr("x",600).attr("y",y).text("(x+1)^"+a).attr("fill","white").attr("stroke","white");
 			x1 -= width *0.5;
-			y1 += height*0.75;
+			y1 += height*0.75+0.5;
 		}
 		x1 += width *0.5;
 		for(i=0;i<=9;i++){
@@ -182,8 +182,8 @@ function reset(){
 
 function draw(){
 		linearmap = d3.scale.pow().exponent(0.35)
-		                .domain([0,200])
-		                //.range(['#47B8C8','#423A38'])
+		                .domain([0,100])
+//		                .range(['#47B8C8','#423A38'])
 						.range(['grey','black'])
 		
 		size = 30;
@@ -210,6 +210,7 @@ function draw(){
 				c = combination(a,b);
 				hex = svg.append("polygon").transition().duration(50)
 				.attr("points",points)
+				//.attr("stroke","white")
 				.attr("fill",function(d){
 					temp = linearmap(c);
 					//console.log(c+"-->"+temp);
@@ -248,7 +249,7 @@ function draw(){
 			}
 			
 			x1 -= width *0.5;
-			y1 += height*0.75;
+			y1 += height*0.75+0.5;
 		}
 		x1 += width *0.5;
 		for(i=0;i<=trngl;i++){
