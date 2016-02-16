@@ -1,53 +1,83 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-
-</style>
+<html>
+<head>
+  <title> Pasca's Triangle </title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
 
 <body onLoad='draw();'>
-<div>
-The binomial theorem describes the algebraic expansion of powers of a binomial, hence it is referred to as binomial expansion. According to the theorem, it is possible to expand the power (x + y)^p into a sum involving terms of the form a^x*b^y*c, where the exponents b and c are nonnegative integers with b + c = n, and the coefficient a of each term is a specific positive integer depending on n and b. When an exponent is zero, the corresponding power is usually omitted from the term. 
 
-<br/><br/><br/>
+<div class="container">
+  <div class="page-header">
+    <h1>Reviewing Binomial Coefficients</h1><h3>Manu Gupta</h3>
+  </div>
+  <div class="jumbotron">
+
+<p>
+  The binomial theorem describes the algebraic expansion of powers of a binomial, hence it is referred to as binomial expansion. According to the theorem, it is possible to expand the power (x + y)^p into a sum involving terms of the form a^x*b^y*c, where the exponents b and c are nonnegative integers with b + c = n, and the coefficient a of each term is a specific positive integer depending on n and b. When an exponent is zero, the corresponding power is usually omitted from the term.
+</p>
+
+<p>
 For example,
-
     (x+y)^4 = x^4 + 4*x^3*y + 6*x^2*y^2 + 4 x * y^3 + y^4.
-    
-<br/><br/>
+</p>
+
+
+<p>
 The coefficient a in the term of a*x^b*y^c is known as the binomial coefficient. These coefficients for varying n and b can be arranged to form Pascal's triangle which we have shown below for binomial expansions for (1+x).<br/>
-These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set. 
 
-<br/>
-Visualization Usage : Every cell represents a binomial coefficients and the text on the right reflect the equation and the sum of coefficients. At the bottom, you can find the powers of the equation corresponding to the coefficients of the equation at the base of the triangle. Feel free to play with it. The example in the text changes when you hover over the text in the hexagon cells. It is highly recommended to read through the examples, once it has changed, so that you can consider combinations better.
-
-</div>
-<div style="display:inline-block;" id="question"></div>
-<div style="display:inline-block;" id="formula"></div>
-<div style="display:inline-block;" id="solution"></div>
+These numbers also arise in combinatorics, where (nCr) gives the number of different combinations of r elements that can be chosen from an n-element set.
+</p>
 
 
-<div id="drawing" width="500" height="500" >
+<p>
+<b>How to use the visualization : </b>Every cell represents a binomial coefficients and the text on the right reflect the equation and the sum of coefficients. At the bottom, you can find the powers of the equation corresponding to the coefficients of the equation at the base of the triangle. Feel free to play with it. The example in the text changes when you hover over the text in the hexagon cells. It is highly recommended to read through the examples, once it has changed, so that you can consider combinations better.
+</p>
 </div>
 
-<br/><br/>
+<div class="panel panel-primary">
+  <h3 class="panel-title"> The question</h3>
+  <div style="display:inline-block;" id="question"></div>
+  <h3 class="panel-title"> The method</h3>
+  <div style="display:inline-block;" id="formula"></div>
+  <h3 class="panel-title"> The result</h3>
+  <div style="display:inline-block;" id="solution"></div>
+</div>
 
-<div >
-Select a value to adjust the power of the equation (1+x)^p :&nbsp;&nbsp;&nbsp;
+<div class="jumbotron" id="drawing" width="500" height="500" >
+</div>
 
-<input type="radio" name="triangle_level" value="1" onclick="pascal()"> 1 &nbsp;
-<input type="radio" name="triangle_level" value="2" onclick="pascal()"> 2 &nbsp;
-<input type="radio" name="triangle_level" value="3" onclick="pascal()"> 3 &nbsp;
-<input type="radio" name="triangle_level" value="4" onclick="pascal()"> 4 &nbsp;
-<input type="radio" name="triangle_level" value="5" onclick="pascal()"> 5 &nbsp;
-<input type="radio" name="triangle_level" value="6" onclick="pascal()"> 6 &nbsp;
-<input type="radio" name="triangle_level" value="7" onclick="pascal()"> 7 &nbsp;
-<input type="radio" name="triangle_level" value="8" onclick="pascal()"> 8 &nbsp;
-<input type="radio" name="triangle_level" value="9" onclick="pascal()" checked> 9 &nbsp;
+<div class="btn-toolbar">
 
-<br/>
-<button type="button" onclick='equation();' id="toggle_eqn_button">Show equation</button>
-<button type="button" onClick='pow_2();' id="pow2">Show Sum of Coefficients</button>
+  <div class="row">
+    <div class="input-group">
+      <span class="input-group-addon">
+      Select a value to adjust the power of the equation (1+x)^p:
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="triangle_level" value="1" onclick="pascal()"> 1 &nbsp;
+        <input type="radio" name="triangle_level" value="2" onclick="pascal()"> 2 &nbsp;
+        <input type="radio" name="triangle_level" value="3" onclick="pascal()"> 3 &nbsp;
+        <input type="radio" name="triangle_level" value="4" onclick="pascal()"> 4 &nbsp;
+        <input type="radio" name="triangle_level" value="5" onclick="pascal()"> 5 &nbsp;
+        <input type="radio" name="triangle_level" value="6" onclick="pascal()"> 6 &nbsp;
+        <input type="radio" name="triangle_level" value="7" onclick="pascal()"> 7 &nbsp;
+        <input type="radio" name="triangle_level" value="8" onclick="pascal()"> 8 &nbsp;
+        <input type="radio" name="triangle_level" value="9" onclick="pascal()" checked> 9 &nbsp;
+      </span>
+    </div>
+  </div>
+  <br/>
+    <div class="row">
+      <div class='col-sm-2'>
+      <button type="button" class="btn btn-danger" onclick='equation();' id="toggle_eqn_button">Show equation</button>
+    </div>
+    <div class='col-sm-1'>
+      <button type="button" class="btn btn-danger" onClick='pow_2();' id="pow2">Show Sum of Coefficients</button>
+    </div>
+    </div>
 </div>
 
 
@@ -89,7 +119,7 @@ function pascal(){
 		}
 	};
 }
-							
+
 var toggle_eqn_button = false;
 function equation(){
 	if(toggle_eqn_button){
@@ -123,7 +153,7 @@ function hex_corner(x,y,size,i){
 	var point = ((x + size * Math.cos(angle))+","+ (y+ size*Math.sin(angle)));
 	//console.log(point);
 	return point;
-	
+
 }
 
 function combination(n,k){
@@ -140,12 +170,12 @@ function combination(n,k){
 }
 
 
-function reset(){	
+function reset(){
 		size = 30;
 		var points = "";
 		height = size*2;
 		vert = height * 3/4;
-		width = Math.sqrt(3)/2 * height;	
+		width = Math.sqrt(3)/2 * height;
 		x1 = 300;
 		y1 = 50;
 		for(a = 0;a<=9;a++){
@@ -163,7 +193,7 @@ function reset(){
 				.attr("fill","white")
 				.attr("stroke","white");
  				//svg.append("text").attr("x",x).attr("y",y).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c).attr("stroke","white").text(c);
-				
+
 			}
 			svg.append("text").attr("x",600+width*2).attr("y",y).text("2^"+a+"="+Math.pow(2,a)).attr("fill","white").attr("stroke","white");
 			svg.append("text").attr("x",600).attr("y",y).text("(x+1)^"+a).attr("fill","white").attr("stroke","white");
@@ -183,21 +213,21 @@ function reset(){
 function draw(){
 		linearmap = d3.scale.pow().exponent(0.35)
 		                .domain([0,100])
-//		                .range(['#47B8C8','#423A38'])
-						.range(['grey','black'])
-		
+		                .range(['#47B8C8','#423A38'])
+//						.range(['grey','black'])
+
 		size = 30;
-		
+
 		var points = "";
 		height = size*2;
 		vert = height * 3/4;
 		width = Math.sqrt(3)/2 * height;
-		
+
 		console.log(points);
-		
+
 		x1 = 300;
 		y1 = 50;
-				
+
 		for(a = 0;a<=trngl;a++){
 			val = 1;
 			for(b=0;b<=a;b++){
@@ -217,18 +247,18 @@ function draw(){
 					return temp;
 				});
 				//hex.enter().append("svg:title").text("manu");
-		
+
 				svg.append("text").attr("x",x).attr("y",y).attr("fill","white").attr('text-anchor',"middle").attr('n',a).attr('r',b).attr('c',c).text(c)
 				.on("mouseover",function(d){
-					
+
 					d3.select(this)
-					.text(this.getAttribute('n')+'C'+this.getAttribute('r'));				
+					.text(this.getAttribute('n')+'C'+this.getAttribute('r'));
 					new_text = "In how many ways can I give " + this.getAttribute('r') + " tin cans to " + this.getAttribute('n') + " people?";
 					svg1.text(new_text);
-					
+
 					new_text = "I can easily do this using combinations, " + this.getAttribute('n') + "C" + this.getAttribute('r');
 					svg2.text(new_text);
-					
+
 					new_text = "=> n! / (r! * (n-r)!) =" + combination(this.getAttribute('n'),this.getAttribute('r'))
 					svg3.text(new_text);
 				})
@@ -247,7 +277,7 @@ function draw(){
 			}else{
 				svg.append("text").attr("x",600+width*2).attr("y",y).text("2^"+a+"="+Math.pow(2,a)).attr("fill","white").attr("stroke","white");;
 			}
-			
+
 			x1 -= width *0.5;
 			y1 += height*0.75+0.5;
 		}
@@ -263,5 +293,5 @@ function draw(){
 
 </script>
 
-
 </body>
+</html>
